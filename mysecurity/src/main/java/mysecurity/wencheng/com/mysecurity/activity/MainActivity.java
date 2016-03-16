@@ -2,9 +2,11 @@ package mysecurity.wencheng.com.mysecurity.activity;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,13 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mysecurity.wencheng.com.mysecurity.R;
+import mysecurity.wencheng.com.mysecurity.activity.activities.ActivityZero;
 import mysecurity.wencheng.com.mysecurity.adpter.MainRecyclerAdapter;
 import mysecurity.wencheng.com.mysecurity.doman.MainInfo;
 
 /**
  * Created by wang on 2016/3/11.
  */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements MainRecyclerAdapter.OnItemClickListener {
 
     private ImageView mLogo;
     private TextView mSubTitle;
@@ -68,6 +71,7 @@ public class MainActivity extends Activity {
         MainRecyclerAdapter mainRecyclerAdapter = new MainRecyclerAdapter(this, mainInfoList);
 
         mRecyclerView.setAdapter(mainRecyclerAdapter);
+        mainRecyclerAdapter.setOnItemClickListener(this);
     }
 
     private void setLogoAnimator() {
@@ -78,4 +82,16 @@ public class MainActivity extends Activity {
     }
 
 
+    @Override
+    public void itemClick(View mainViewHolder, int i) {
+        switch (i) {
+            case 0:
+                Intent intent = new Intent(this,ActivityZero.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                break;
+        }
+
+
+    }
 }

@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import mysecurity.wencheng.com.mysecurity.R;
-import mysecurity.wencheng.com.mysecurity.activity.MainActivity;
 import mysecurity.wencheng.com.mysecurity.doman.MainInfo;
 
 /**
@@ -21,6 +20,16 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     private final Context mContext;
     private final List<MainInfo> list;
+
+    public interface OnItemClickListener{
+        void itemClick(View mainViewHolder, int i);
+    }
+
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     public MainRecyclerAdapter(Context context, List<MainInfo> mainInfoList) {
         this.mContext = context;
@@ -37,11 +46,22 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     }
 
     @Override
-    public void onBindViewHolder(MainViewHolder mainViewHolder, int i) {
+    public void onBindViewHolder(final MainViewHolder mainViewHolder, final int i) {
 
         MainInfo mainInfo = list.get(i);
         mainViewHolder.mItemImageView.setBackgroundResource(mainInfo.getIcon());
         mainViewHolder.mItemTitle.setText(mainInfo.getTitle());
+        mainViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.itemClick(mainViewHolder.itemView,i);
+
+
+                }
+
+            }
+        });
 
     }
 
@@ -55,10 +75,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
         private  ImageView mItemImageView;
         private  TextView mItemTitle;
+        private View itemView;
 
         public MainViewHolder(View itemView) {
             super(itemView);
 
+
+            this.itemView = itemView;
             mItemImageView = (ImageView) itemView.findViewById(R.id.act_main_item_icon);
             mItemTitle = (TextView) itemView.findViewById(R.id.act_main_item_title);
 

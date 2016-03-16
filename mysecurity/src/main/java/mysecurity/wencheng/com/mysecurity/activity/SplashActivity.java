@@ -94,8 +94,6 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onResponse(String s) {
                 compareVersion(versionCode,s);
-
-
             }
         }, new Response.ErrorListener() {
             @Override
