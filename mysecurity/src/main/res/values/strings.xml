@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MySecurity</string>
+    <string name="onefragment_title">1.欢迎使用手机防盗</string>
+    <string name="twofragment_title">2.手机卡绑定</string>
+    <string name="treefragment_title">3.设置安全号码</string>
+    <string name="fourfragment_title">4.激活设备管理员</string>
+    <string name="fivefragment_title">5.设置完成</string>
 </resources>

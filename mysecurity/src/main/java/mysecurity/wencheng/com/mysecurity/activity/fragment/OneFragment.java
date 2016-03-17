@@ -1,27 +1,35 @@
 package mysecurity.wencheng.com.mysecurity.activity.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import mysecurity.wencheng.com.mysecurity.R;
 
 /**
  * Created by wang on 2016/3/15.
  */
-public class OneFragment extends Fragment{
+public class OneFragment extends BaseFragment implements View.OnClickListener {
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
-        TextView textView = new TextView(getActivity());
-        textView.setText("one");
-                
-        return textView;
+        mTitle.setText(R.string.onefragment_title);
+        mIconCore.setBackgroundResource(R.drawable.step_1);
+        mContainer.addView(getRootView(), LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        mBack.setVisibility(View.INVISIBLE);
+
     }
+
+    private View getRootView() {
+        View view = View.inflate(getActivity(), R.layout.one_fragment_core_view, null);
+
+        return view;
+
+    }
+
+
 }
